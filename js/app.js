@@ -56,7 +56,7 @@ $(document).ready(function() {
                 $cardContentSpan.append($icon);
 
                 var $cardContentP = $("<p>");
-                var $cardContentLink = $('<a href="'+ data[i].websiteURL+'">');
+                var $cardContentLink = $('<a href="'+ data[i].websiteURL+'" target="blank">');
                 $cardContentLink.text("Contribute");
                 $cardContentP.append($cardContentLink);
                 $cardContentAction.append($cardContentSpan).append($cardContentP);
