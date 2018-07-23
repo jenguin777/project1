@@ -44,9 +44,9 @@ $(document).ready(function() {
 
                 var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src='+data[i].cause.image +'></div>');
 
-                var $cardContentAction = $('<div class="card-action">');
+                var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
                 
-                var $cardContentSpan=$('<span class="card-title activator grey-text text-darken-4"></span>');
+                var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4"></span>');
                 $cardContentSpan.text(data[i].charityName);
 
                 var $icon = $("<i>");
@@ -56,7 +56,7 @@ $(document).ready(function() {
                 $cardContentSpan.append($icon);
 
                 var $cardContentP = $("<p>");
-                var $cardContentLink = $('<a href="'+ data[i].websiteURL+'" target="blank">');
+                var $cardContentLink = $('<a href="'+ data[i].websiteURL+'" target="blank" style="color:fuchsia">');
                 $cardContentLink.text("Contribute");
                 $cardContentP.append($cardContentLink);
                 $cardContentAction.append($cardContentSpan).append($cardContentP);
@@ -65,12 +65,14 @@ $(document).ready(function() {
                 var $cardReveal = $("<div>");
                 $cardReveal.addClass("card-reveal");
 
-                var $cardRevealSpan = $("<span>");
+                var $cardRevealSpan = $("<p>");
                 $cardRevealSpan.addClass("card-title grey-text text-darken-4");
+                $cardContentSpan.css({"font-size":"20px","line-height":"1.4rem" });
                 $cardRevealSpan.append(data[i].charityName);
 
                 var $cardRevealIcon = $("<i>");
                 $cardRevealIcon.addClass("material-icons right");
+                $cardRevealIcon.css({"margin-left":"0","line-height":"1.25" });
                 $cardRevealIcon.text("close");
 
                 $cardRevealSpan.append($cardRevealIcon);
