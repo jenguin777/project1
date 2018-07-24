@@ -12,16 +12,13 @@ $(document).ready(function() {
     //Research and Public Policy = 11
     
     
-       var city = ;
-
-       var state = ;
-
-       var zip = ;
+       var city = "&city=Durham";
     
-       var categoryIdentifier = $(".category").data("category-id");
+       var categoryIdentifier = "&categoryID=1"
+       
+       var pageSize = "&pageSize=8";
     
-       var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?app_id=d555fab3&app_key=579ef660f0ef22b0d11f99db0ecd61a9&rated=TRUE&pageSize=8" + "&city=" + city + "&state=" + state + "&zip=" + zip + "&category=" + categoryIdentifier; 
-
+       var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?app_id=d555fab3&app_key=579ef660f0ef22b0d11f99db0ecd61a9&rated=TRUE&state=NC" + city + pageSize; 
     
         $.ajax({
             url: queryURL,
@@ -36,17 +33,16 @@ $(document).ready(function() {
             console.log(data[0].websiteURL);
             console.log(data[0].irsClassification.subsection);
 
-
             //Loop Through Data Returned 
 
             for (var i = 0; i <data.length; i++) {
                 //most-outer Div
-                var $npDiv = $('<div class="col s6 m4 cardcol for-buttons"></div>');
+                var $npDiv = $('<div class="col s6 m4 cardcol "></div>');
 
                 //Card Div
                 var $mycard = $('<div class="card small sticky-action"></div>');
 
-                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src='+ data[i].cause.image +'></div>');
+                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src='+data[i].cause.image +'></div>');
 
                 var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
                 
@@ -98,6 +94,4 @@ $(document).ready(function() {
             }
 
         }
-});
-
-    
+            });
