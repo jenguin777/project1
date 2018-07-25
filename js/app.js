@@ -80,7 +80,7 @@ $(document).ready(function() {
                 var $cardRevealP = $("<p>");
                 $cardRevealP.text("data[i].mission");
                 var $cardRevealP2 = $("<p>");
-                var $cardRevealLink = $('<a href="results.html" target="blank" style="color:fuchsia">');
+                var $cardRevealLink = $('<a href="'+data[i].websiteURL+'" target="_blank" style="color:fuchsia">');
                 $cardRevealLink.text("Contribute");
                 $cardRevealP2.append($cardRevealLink);
 
