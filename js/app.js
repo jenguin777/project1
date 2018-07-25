@@ -10,17 +10,18 @@ $(document).ready(function() {
     //Human and Civil Rights = 8
     //Religion = 9
     //Research and Public Policy = 11
-    
-    
-       var city = ;
 
-       var state = ;
+    var categoryImages = ["Animals1.jpg","ArtsCultureHumanities2.jpg","Education3.jpg","Environment4.jpg","Health5.jpg","HumanServices6.jpg","HumanCivilRights8.jpg","Religion9.jpg","ResearchPublicPolicy11"];
 
-       var zip = ;
+       var city = "raleigh";
+
+       var state = "NC";
+
+       var zip = "27613";
     
        var categoryIdentifier = $(".category").data("category-id");
     
-       var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?app_id=d555fab3&app_key=579ef660f0ef22b0d11f99db0ecd61a9&rated=TRUE&pageSize=8" + "&city=" + city + "&state=" + state + "&zip=" + zip + "&category=" + categoryIdentifier; 
+       var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=8&rated=true&city=" + city + "&state=" + state; 
 
     
         $.ajax({
@@ -92,9 +93,9 @@ $(document).ready(function() {
                 $mycard.append($cardReveal);
                 $npDiv.append($mycard);
 
-                console.log($npDiv);
                 //Appending to id=display-nonprofit
                 $("#resultsRow").append($npDiv);
             }
 
         }
+    });
