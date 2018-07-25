@@ -12,7 +12,19 @@ $(document).ready(function() {
     //Research and Public Policy = 11
 
     var categoryImages = ["Animals1.jpg","ArtsCultureHumanities2.jpg","Education3.jpg","Environment4.jpg","Health5.jpg","HumanServices6.jpg","HumanCivilRights8.jpg","Religion9.jpg","ResearchPublicPolicy11.jpg"];
-
+    for (var i=0;i<categoryImages.length;i++) {
+        var catDiv = $('<div class="col s4 m3" category>');
+        var cardA = $('<a href="results.html" target=""></a>');
+        var cardDiv = $('<div class="card small"  style="height: 120px;"></div>');
+        var cardImg = $('<div class="card-image" style="max-height: 100%; overflow: none;"></div>');              
+        cardImg.append('<img class="responsive-img" src="images/'+categoryImages[i]+'">');
+        cardImg.append('<span class="card-title">Animals</span>');
+        cardDiv.append(cardImg);
+        cardA.append(cardDiv);
+        catDiv.append(cardA);
+        $("#catRow").append(catDiv);
+    }
+    
        var city = "raleigh";
 
        var state = "NC";
