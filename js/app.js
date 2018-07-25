@@ -42,7 +42,7 @@ $(document).ready(function() {
                 //Card Div
                 var $mycard = $('<div class="card small sticky-action"></div>');
 
-                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src='+data[i].cause.image +'></div>');
+                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/'+categoryImages[i] +'"></div>');
 
                 var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
                 
@@ -56,7 +56,7 @@ $(document).ready(function() {
                 $cardContentSpan.append($icon);
 
                 var $cardContentP = $("<p>");
-                var $cardContentLink = $('<a href="'+ data[i].websiteURL+'" target="blank" style="color:fuchsia">');
+                var $cardContentLink = $('<a href="results.html" target="blank" style="color:fuchsia">');
                 $cardContentLink.text("Contribute");
                 $cardContentP.append($cardContentLink);
                 $cardContentAction.append($cardContentSpan).append($cardContentP);
