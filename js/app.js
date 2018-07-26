@@ -60,7 +60,7 @@ $(document).ready(function() {
 
             for (var i = 0; i <data.length; i++) {
                 //most-outer Div
-                var $npDiv = $('<div class="col s6 m4 cardcol for-buttons"></div>');
+                var $npDiv = $('<div id="'+data[i].charityName.replace(/\s+/g, '')+'" class="col s6 m4 cardcol for-buttons"></div>');
 
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
@@ -98,11 +98,15 @@ $(document).ready(function() {
                 var $cardRevealP = $("<p>");
                 $cardRevealP.text("data[i].mission");
                 var $cardRevealP2 = $("<p>");
-                var $cardRevealLink = $('<a href="'+data[i].websiteURL+'" target="_blank" style="color:fuchsia">');
-                $cardRevealLink.text("Contribute");
-                $cardRevealP2.append($cardRevealLink);
+                var $cardRevealLink1 = $('<a href="'+data[i].websiteURL+'" target="_blank" style="color:fuchsia">');
+                $cardRevealLink1.text("Contribute");
+                $cardRevealP2.append($cardRevealLink1);
+                var $cardRevealP3 = $("<p>");
+                var $cardRevealBtn = $('<button class="favChar" data-Name="'+data[i].charityName.replace(/\s+/g, '')+'"></button>');
+                $cardRevealBtn.text("My Fav");
+                $cardRevealP3.append($cardRevealBtn);
 
-                $cardReveal.append($cardRevealSpan).append($cardRevealP).append($cardRevealP2);
+                $cardReveal.append($cardRevealSpan).append($cardRevealP).append($cardRevealP2).append($cardRevealP3);
 
                 // Appending CardImg, CardContent, and Card Reveal to its div
                 $mycard.append($cardContent);
@@ -115,4 +119,16 @@ $(document).ready(function() {
             }
 
         }
+        // Click handler for adding a gif to favorites
+        $(".char-card").on("click", ".favChar", function () {
+
+            // Grab the index info
+            var nameClicked = $(this).attr("data-Name");
+            console.log(nameClicked);
+            // Remove the gif from search
+            var copyCard = $("#"+nameClicked);
+            console.log(copyCard);
+            // Copy it to favorites container
+            $("#"+nameClicked).remove();
+        });
     });
