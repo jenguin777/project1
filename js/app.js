@@ -31,11 +31,9 @@ $(document).ready(function() {
         $("#catRow").append(catDiv);
     }
     
-       var city = "";
+    //    var city = "";
 
        var state = "";
-
-       var zip = "";
        
        var categoryId = localStorage.getItem("category");
     
