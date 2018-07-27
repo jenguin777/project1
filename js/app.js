@@ -17,7 +17,11 @@ $(document).ready(function() {
                             {category:"HumanCivilRights",url:"HumanCivilRights8.jpg",catNum:"8"},{category:"Religion",url:"Religion9.jpg",catNum:"9"},
                             {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg",catNum:"11"}];
     
-
+    var states= ["alabama","alaska","arizona","arkansas","california","colorado","delaware","florida","georgia","hawaii","idaho",
+    "illinois","indiana","indiana","iowa","kansas","kentucky","louisiana","maine","maryland","michigan","minnesota",
+    "missouri","newjersey","newmexico","newyork","northcarolina","ohio","oklahoma","oregon","tennessee","texas","utah",
+    "vermont","virginia","wisconsin","wyoming"];
+    
     var config = {
         apiKey: "AIzaSyB3OTKnscA9uQXfdcKUkuPOANkEF-lUVA0",
         authDomain: "projectcodingcamp.firebaseapp.com",
@@ -34,6 +38,9 @@ $(document).ready(function() {
     var db = firebase.database();
     var jjdb = db.ref("Project1");
     
+    for (var i=0;i<states.length;i++) {
+        $("#dropdown1").append('<li><a href="#!">'+states[i]+'</a></li>');
+    }
     console.log(categoryImages);
     for (var i=0;i<categoryImages.length;i++) {
         var catDiv = $('<div class="col s6 m4 category" data="'+categoryImages[i].catNum+'">');
