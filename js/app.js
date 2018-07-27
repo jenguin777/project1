@@ -11,16 +11,16 @@ $(document).ready(function() {
     //Religion = 9
     //Research and Public Policy = 11
 
-    var categoryImages = [{category:"Animals",url:"Animals1.jpg"},{category:"ArtsCultureHumanities",url:"ArtsCultureHumanities2.jpg"},
-                            {category:"Education",url:"Education3.jpg"},{category:"Environment",url:"Environment4.jpg"},
-                            {category:"Health",url:"Health5.jpg"},{category:"HumanServices",url:"HumanServices6.jpg"},
-                            {category:"HumanCivilRights",url:"HumanCivilRights8.jpg"},{category:"Religion",url:"Religion9.jpg"},
-                            {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg"}];
+    var categoryImages = [{category:"Animals",url:"Animals1.jpg",catNum:"1"},{category:"ArtsCultureHumanities",url:"ArtsCultureHumanities2.jpg",catNum:"2"},
+                            {category:"Education",url:"Education3.jpg",catNum:"3"},{category:"Environment",url:"Environment4.jpg",catNum:"4"},
+                            {category:"Health",url:"Health5.jpg",catNum:"5"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6"},
+                            {category:"HumanCivilRights",url:"HumanCivilRights8.jpg",catNum:"8"},{category:"Religion",url:"Religion9.jpg",catNum:"9"},
+                            {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg",catNum:"11"}];
     
     console.log(categoryImages);
     for (var i=0;i<categoryImages.length;i++) {
-        var catDiv = $('<div class="col s4 m3" category>');
-        var cardA = $('<a href="results.html" target=""></a>');
+        var catDiv = $('<div class="col s4 m3 category" data="'+categoryImages[i].catNum+'">');
+        var cardA = $('<a href="results.html" target="_blank"></a>');
         var cardDiv = $('<div class="card small"  style="height: 120px;"></div>');
         var cardImg = $('<div class="card-image" style="max-height: 100%; overflow: none;"></div>');              
         cardImg.append('<img class="responsive-img" src="images/'+categoryImages[i].url+'">');
@@ -31,15 +31,17 @@ $(document).ready(function() {
         $("#catRow").append(catDiv);
     }
     
-       var city = "raleigh";
+       var city = "";
 
-       var state = "NC";
+       var state = "";
 
-       var zip = "27613";
+       var zip = "";
+       
+       var categoryId = localStorage.getItem("category");
     
-       var categoryIdentifier = $(".category").data("category-id");
-    
-       var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=9&rated=true&city=" + city + "&state=" + state; 
+       function callCharApi (cat) {
+        
+        var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=9&rated=true&state=NC&categoryID="+cat; 
 
     
         $.ajax({
@@ -60,7 +62,7 @@ $(document).ready(function() {
 
             for (var i = 0; i <data.length; i++) {
                 //most-outer Div
-                var $npDiv = $('<div id="'+data[i].charityName.replace(/\s+/g, '')+'" class="col s6 m4 cardcol for-buttons"></div>');
+                var $npDiv = $('<div class="col s6 m4 cardcol for-buttons" data-Name="'+data[i].charityName+'"></div>');
 
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
@@ -117,8 +119,21 @@ $(document).ready(function() {
                 //Appending to id=display-nonprofit
                 $("#resultsRow").append($npDiv);
             }
-
+            }
         }
+
+        callCharApi(categoryId);
+
+        // Click handler for adding a gif to favorites
+        $("#catRow").on("click", ".category", function () {
+
+            // Grab the index info
+            var catClicked = $(this).attr("data");
+            console.log(catClicked);
+            newCategoryId = catClicked;
+            localStorage.setItem("category",newCategoryId);
+        });
+
         // Click handler for adding a gif to favorites
         $(".char-card").on("click", ".favChar", function () {
 
@@ -129,6 +144,5 @@ $(document).ready(function() {
             var copyCard = $("#"+nameClicked);
             console.log(copyCard);
             // Copy it to favorites container
-            $("#"+nameClicked).remove();
         });
     });
