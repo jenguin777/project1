@@ -55,3 +55,107 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+
+
+/* Results page styling */
+.card .card-action{
+  padding:0;
+}
+/* Styling for title and icon layout */
+.card-title{
+  font-size: 20px;
+  line-height: 1.4rem;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Reveal card styling */
+.card .card-reveal {
+  padding: 16px;
+  height: 275px;
+} 
+
+.card .card-reveal .card-title {
+  cursor: pointer;
+  display: flex;
+  margin:0px;
+  margin-right: 16px;
+  font-weight: bold;
+}
+
+.card-reveal-close-icon{
+  position: fixed;
+  right: 12px;
+  top: 12px;
+}
+
+.card-reveal-deductible-text{
+  float: left;
+  text-align: left;
+  font-size:10px;
+  width: 100%;
+}
+/* Reveal card buttons styling */
+.card-reveal-contribute-button, .card-reveal-favorite-button{
+  display: inline-block;
+}
+
+.card-reveal-contribute-button a{
+    padding: 12px;
+    border-radius: 5px;
+    color: white;
+    background: #4285f4;
+    display: inline-block;
+    width: 100px;
+    height: 48px;
+  }
+
+
+.card-reveal-favorite-button {
+  padding: 12px;
+  background: white;
+  border: 1px solid #4285f4;
+  border-radius: 5px;
+  color: #4285f4;
+  width: 100px;
+  height: 48px;
+}
+
+.card .card-reveal p{
+  margin-bottom: 0px;
+}
+
+/* Results page heading */
+h2{
+  margin-top: 0px;
+}
+
+nav .brand-logo {
+  margin-left: 16px;
+}
+
+/* Responsive layout for container and cards */
+@media only screen and (min-width: 993px){
+  .container {
+      width: 95%;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .row .col.s6 {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 450px){
+  .row .col.s6 {
+    width: 100%;
+  }
+}
+
+
+

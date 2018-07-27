@@ -72,7 +72,7 @@ $(document).ready(function() {
         var $npDiv = $('<div id="indexFav-'+lengthFavList+'" class="col s6 m4 cardcol for-buttons" data-Name="'+childSnapshot.val().FavCharity+'"></div>');
 
         //Card Div
-        var $mycard = $('<div class="card" style="height:275px"></div>');
+        var $mycard = $('<div class="card" style="height:275px;"></div>');
 
         var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="'+childSnapshot.val().CharityPic +'" style="height:130px";></div>');
 
@@ -179,10 +179,11 @@ $(document).ready(function() {
                 var $mycard = $('<div class="card" style="height:275px"></div>');
 
                 var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/'+categoryImages[i].url +'" style="height:130px";></div>');
-
-                var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
                 
-                var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem;" ></span>');
+                //var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
+                var $cardContentAction = $('<div class="card-action" style="height:40%;">');
+                
+                var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem; margin:16px;" ></span>');
                 $cardContentSpan.text(data[i].charityName);
 
                 var $icon = $("<i>");
@@ -202,21 +203,21 @@ $(document).ready(function() {
                 $cardRevealSpan.append(data[i].charityName);
 
                 var $cardRevealIcon = $("<i>");
-                $cardRevealIcon.addClass("material-icons right");
+                $cardRevealIcon.addClass("card-reveal-close-icon material-icons right");
                 $cardRevealIcon.css({"margin-left":"0","line-height":"1.25" });
                 $cardRevealIcon.text("close");
 
                 $cardRevealSpan.append($cardRevealIcon);
 
-                var $cardRevealP = $("<p>");
+                var $cardRevealP = $("<p class='card-reveal-deductible-text'>");
                 $cardRevealP.text(data[i].irsClassification.deductibility);
-                var $cardRevealP2 = $("<p>");
-                var $cardRevealLink1 = $('<a href="'+data[i].websiteURL+'" target="_blank" style="color:fuchsia">');
+                var $cardRevealP2 = $("<p class='card-reveal-contribute-button'>");
+                var $cardRevealLink1 = $('<a href="'+data[i].websiteURL+'" target="_blank">');
                 $cardRevealLink1.text("Contribute");
                 $cardRevealP2.append($cardRevealLink1);
                 var $cardRevealP3 = $("<p>");
-                var $cardRevealBtn = $('<button data="'+i+'" class="favChar"></button>');
-                $cardRevealBtn.text("My Fav");
+                var $cardRevealBtn = $('<button data="'+i+'" class="favChar card-reveal-favorite-button"></button>');
+                $cardRevealBtn.text("Favorites");
                 $cardRevealP3.append($cardRevealBtn);
 
                 $cardReveal.append($cardRevealSpan).append($cardRevealP).append($cardRevealP2).append($cardRevealP3);
