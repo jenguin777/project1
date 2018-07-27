@@ -54,7 +54,7 @@ $(document).ready(function() {
             console.log("Rating: " + data[0].currentRating.rating);
             console.log(data[0].websiteURL);
             console.log(data[0].irsClassification.subsection);
-
+            $('.opening-hours').append('<li>'+data[0].mission+"</li>");
 
             //Loop Through Data Returned 
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
                 $cardRevealSpan.append($cardRevealIcon);
 
                 var $cardRevealP = $("<p>");
-                $cardRevealP.text("data[i].mission");
+                $cardRevealP.text("data[i].rating");
                 var $cardRevealP2 = $("<p>");
                 var $cardRevealLink1 = $('<a href="'+data[i].websiteURL+'" target="_blank" style="color:fuchsia">');
                 $cardRevealLink1.text("Contribute");
