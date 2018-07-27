@@ -104,8 +104,8 @@ $(document).ready(function() {
 
         $cardRevealSpan.append($cardRevealIcon);
 
-        var $cardRevealP = $("<p>");
-        $cardRevealP.text(childSnapshot.val().favStat);
+        var $cardRevealP = $('<p style="color:black">');
+        $cardRevealP.text(childSnapshot.val().CharStat);
         var $cardRevealP2 = $("<p>");
         var $cardRevealLink1 = $('<a href="'+childSnapshot.val().CharUrl+'" target="_blank" style="color:fuchsia">');
         $cardRevealLink1.text("Contribute");
