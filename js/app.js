@@ -1,6 +1,25 @@
 $(document).ready(function() {
 
-
+    var mapData = [
+        {lat: 35.994034, lng: -78.897634},
+        {lat: 35.994034, lng: -78.897656},
+        {lat: 35.994034, lng: -78.897638},
+        {lat: 35.994034, lng: -78.897690}
+      ]
+        function initMap() {
+          var myLatLng = {lat: 35.994034, lng: -78.897621};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: myLatLng
+          });
+          for (var i = 0; i < mapData.length; i++) {
+          new google.maps.Marker({
+            position: { lat: mapData[i].lat, lng: mapData[i].lng},
+            map: map,
+            title: 'Hello World!'
+          });
+        }
+    }
     //Categories data  identifier: 
     //Animals = 1 
     //Arts, Culture, Humanities = 2 
@@ -179,4 +198,4 @@ $(document).ready(function() {
                 // Copy it to favorites container
                 $("#"+nameClicked).remove();
             });
-    });
+});

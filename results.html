@@ -62,8 +62,9 @@
                                     <div id="wpgeo_map_6218_3" class="wpgeo_map wp_geo_map" style="width: 100%; height: 300px; position: relative; overflow: hidden;">
                                       <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
                                           <!-- GOOGLE MAP -->
-                                          <iframe id="map-dynamic" width="100%" height="100%" frameborder="0" style="border:0"
-                                          src="https://www.google.com/maps/embed/v1/search?q=American+Kennel+Club+Canine+Health+Foundation&key=AIzaSyAJDFeBXZBp-TTYRVj6aK4vplaZQ3VbrrM&zoom=10" allowfullscreen></iframe>    
+                                          <div id="map" width="100%" height="100%"></div>
+                                          <!-- <iframe id="map-dynamic" width="100%" height="100%" frameborder="0" style="border:0"
+                                          src="https://www.google.com/maps/embed/v1/search?q=American+Kennel+Club+Canine+Health+Foundation&key=AIzaSyAJDFeBXZBp-TTYRVj6aK4vplaZQ3VbrrM&zoom=10" allowfullscreen></iframe>     -->
                                         
                                       </div>
                                     </div>
@@ -125,7 +126,9 @@
       <script src="js/init.js"></script>
       <script src="js/app.js"></script>
       
-
+      <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDL7WHl2jEOJkq9c-2zkjMhDequ7EsG-Q&callback=initMap">
+    </script>
     
     </body>
     </html>
