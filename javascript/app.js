@@ -12,10 +12,10 @@ $(document).ready(function() {
     //Research and Public Policy = 11
  
     var categoryImages = [{category:"Animals",url:"Animals1.jpg",catNum:"1"},{category:"ArtsCultureHumanities",url:"ArtsCultureHumanities2.jpg",catNum:"2"},
-                            {category:"Education",url:"Education3.jpg",catNum:"3"},{category:"Environment",url:"Environment4.jpg",catNum:"4"},
-                            {category:"Health",url:"Health5.jpg",catNum:"5"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6"},
-                            {category:"HumanCivilRights",url:"HumanCivilRights8.jpg",catNum:"8"},{category:"Religion",url:"Religion9.jpg",catNum:"9"},
-                            {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg",catNum:"11"}];
+                        {category:"Education",url:"Education3.jpg",catNum:"3"},{category:"Environment",url:"Environment4.jpg",catNum:"4"},
+                        {category:"Health",url:"Health5.jpg",catNum:"5"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6"},
+                        {category:"HumanCivilRights",url:"HumanCivilRights8.jpg",catNum:"8"},{category:"Religion",url:"Religion9.jpg",catNum:"9"},
+                        {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg",catNum:"11"}];
     
     var states= ["alabama","alaska","arizona","arkansas","california","colorado","delaware","florida","georgia","hawaii","idaho",
     "illinois","indiana","indiana","iowa","kansas","kentucky","louisiana","maine","maryland","michigan","minnesota",
@@ -65,6 +65,7 @@ $(document).ready(function() {
       }
 
     var lengthFavList=0;
+    $("#resultsDiv img").attr("src",localStorage.getItem("categoryPic"));
 
     jjdb.on("child_added", function(childSnapshot) {
 
@@ -142,8 +143,8 @@ $(document).ready(function() {
             jjdb.child(childSnapshot.key).remove();
             });
         });
-    });
 
+    });
     //    var city = "";
 
        var state = "";
@@ -242,6 +243,11 @@ $(document).ready(function() {
 
             // Grab the index info
             var catClicked = $(this).attr("data");
+            for (i=0;i<categoryImages.length;i++) {
+                if (categoryImages.catNum ==catClicked) {
+                    localStorage.setItem("categoryPic",categoryImages[i].url);
+                }
+            }
             console.log(catClicked);
             newCategoryId = catClicked;
             localStorage.setItem("category",newCategoryId);
