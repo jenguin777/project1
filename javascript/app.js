@@ -72,7 +72,11 @@ $(document).ready(function() {
         var $npDiv = $('<div id="indexFav-'+lengthFavList+'" class="col s6 m4 cardcol for-buttons" data-Name="'+childSnapshot.val().FavCharity+'"></div>');
 
         //Card Div
+<<<<<<< HEAD:js/app.js
+        var $mycard = $('<div class="card click-for-map" style="height:275px;"></div>');
+=======
         var $mycard = $('<div class="card" style="height:275px; border: 2px solid darkgray;border-radius: 7px;"></div>');
+>>>>>>> 67e9799290050bcae4bade472c27001a779af1c6:javascript/app.js
 
         var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="'+childSnapshot.val().CharityPic +'" style="height:130px";></div>');
 
@@ -107,7 +111,7 @@ $(document).ready(function() {
         var $cardRevealP = $('<p style="color:black">');
         $cardRevealP.text(childSnapshot.val().CharStat);
         var $cardRevealP2 = $("<p>");
-        var $cardRevealLink1 = $('<a href="'+childSnapshot.val().CharUrl+'" target="_blank" style="color:fuchsia">');
+        var $cardRevealLink1 = $('<a href="'+childSnapshot.val().CharUrl+'" target="_blank">');
         $cardRevealLink1.text("Contribute");
         $cardRevealP2.append($cardRevealLink1);
         var $cardRevealP3 = $("<p>");
@@ -247,19 +251,30 @@ $(document).ready(function() {
             localStorage.setItem("category",newCategoryId);
         });
 
+        // START OF GOOGLE MAP FEATURE 
+        // Populating Map with the Charity Category in context. 
+        $(".char-card").on("click", ".cardcol", function () {        
+            var newURL = $(this).attr("data-Name");
+            document.getElementById("charityMap").src ="https://www.google.com/maps/embed/v1/search?key=AIzaSyAJDFeBXZBp-TTYRVj6aK4vplaZQ3VbrrM&zoom=10&q="+ newURL;
+        });
+        // END OF GOOGLE MAP FEATURE 
+
         // Click handler for adding a gif to favorites
         $(".char-card").on("click", ".favChar", function () {
-
-            // Grab the index info
+        
+        // Grab the index info
         var nameClicked = $(this).attr("data");
         console.log(nameClicked);
+        
             // Remove the gif from search
         var copyName = $("#index-"+nameClicked).attr("data-Name");
+        console.log(copyName);
         var copyPic = $("#index-"+nameClicked+ ' .card .card-image img').attr("src");
         var copyStat = $("#index-"+nameClicked+ ' .card .card-reveal :nth-child(2)').text();
         var copyUrl = $("#index-"+nameClicked+ ' .card .card-reveal p a').attr("href");
         makeFavCard(copyName,copyPic,copyStat,copyUrl);
 
-            // Copy it to favorites container
+        // Copy it to favorites container
+
         });
     });
