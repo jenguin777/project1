@@ -62,6 +62,9 @@ $(document).ready(function() {
             for (var i = 0; i <data.length; i++) {
                 //most-outer Div
                 var $npDiv = $('<div id="'+data[i].charityName.replace(/\s+/g, '')+'" class="col s6 m4 cardcol for-buttons address"></div>');
+                //Do not Delete: For map (note by Chris)
+                $npDiv.attr("data-address", data[i].mailingAddress.streetAddress1 + "," + data[i].mailingAddress.city + "," + data[i].mailingAddress.stateOrProvince + " " + data[i].mailingAddress.postalCode);
+
 
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
