@@ -72,11 +72,7 @@ $(document).ready(function() {
         var $npDiv = $('<div id="indexFav-'+lengthFavList+'" class="col s6 m4 cardcol for-buttons" data-Name="'+childSnapshot.val().FavCharity+'"></div>');
 
         //Card Div
-<<<<<<< HEAD:js/app.js
-        var $mycard = $('<div class="card click-for-map" style="height:275px;"></div>');
-=======
         var $mycard = $('<div class="card" style="height:275px; border: 2px solid darkgray;border-radius: 7px;"></div>');
->>>>>>> 67e9799290050bcae4bade472c27001a779af1c6:javascript/app.js
 
         var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="'+childSnapshot.val().CharityPic +'" style="height:130px";></div>');
 
