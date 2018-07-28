@@ -10,7 +10,7 @@ $(document).ready(function() {
     //Human and Civil Rights = 8
     //Religion = 9
     //Research and Public Policy = 11
-
+ 
     var categoryImages = [{category:"Animals",url:"Animals1.jpg",catNum:"1"},{category:"ArtsCultureHumanities",url:"ArtsCultureHumanities2.jpg",catNum:"2"},
                             {category:"Education",url:"Education3.jpg",catNum:"3"},{category:"Environment",url:"Environment4.jpg",catNum:"4"},
                             {category:"Health",url:"Health5.jpg",catNum:"5"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6"},
@@ -72,7 +72,7 @@ $(document).ready(function() {
         var $npDiv = $('<div id="indexFav-'+lengthFavList+'" class="col s6 m4 cardcol for-buttons" data-Name="'+childSnapshot.val().FavCharity+'"></div>');
 
         //Card Div
-        var $mycard = $('<div class="card" style="height:275px;"></div>');
+        var $mycard = $('<div class="card" style="height:275px; border: 2px solid darkgray;border-radius: 7px;"></div>');
 
         var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="'+childSnapshot.val().CharityPic +'" style="height:130px";></div>');
 
@@ -94,7 +94,7 @@ $(document).ready(function() {
 
         var $cardRevealSpan = $("<p>");
         $cardRevealSpan.addClass("card-title grey-text text-darken-4");
-        $cardRevealSpan.css({"font-size":"16px","line-height":"1.4rem" });
+        $cardRevealSpan.css({"font-size":"16px","line-height":"1.4rem"});
         $cardRevealSpan.append(childSnapshot.val().FavCharity);
 
         var $cardRevealIcon = $("<i>");
@@ -178,7 +178,7 @@ $(document).ready(function() {
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
 
-                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/'+categoryImages[i].url +'" style="height:130px";></div>');
+                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/'+categoryImages[i].url +'" style="height:130px;";></div>');
                 
                 //var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
                 var $cardContentAction = $('<div class="card-action" style="height:40%;">');
