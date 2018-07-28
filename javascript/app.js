@@ -196,7 +196,7 @@ $(document).ready(function() {
                 //most-outer Div
                 missions.push({name: data[i].charityName,mission: data[i].mission,addr: data[i].mailingAddress.streetAddress1+" "+ data[i].mailingAddress.city +","+data[i].mailingAddress.stateOrProvince + " "+ data[i].mailingAddress.postalCode});
 
-                var $npDiv = $('<div id="index-"'+i+'" class="col s6 m4 cardcol for-buttons" data-Name="'+data[i].charityName+'"></div>');
+                var $npDiv = $('<div id="index-'+i+'" class="col s6 m4 cardcol for-buttons" data-Name="'+data[i].charityName+'"></div>');
 
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
