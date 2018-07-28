@@ -10,7 +10,7 @@ $(document).ready(function() {
     //Human and Civil Rights = 8
     //Religion = 9
     //Research and Public Policy = 11
-
+ 
     var categoryImages = [{category:"Animals",url:"Animals1.jpg",catNum:"1"},{category:"ArtsCultureHumanities",url:"ArtsCultureHumanities2.jpg",catNum:"2"},
                             {category:"Education",url:"Education3.jpg",catNum:"3"},{category:"Environment",url:"Environment4.jpg",catNum:"4"},
                             {category:"Health",url:"Health5.jpg",catNum:"5"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6"},
