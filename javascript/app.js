@@ -17,10 +17,16 @@ $(document).ready(function() {
                         {category:"HumanCivilRights",url:"HumanCivilRights8.jpg",catNum:"8"},{category:"Religion",url:"Religion9.jpg",catNum:"9"},
                         {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg",catNum:"11"}];
     
-    var states= ["alabama","alaska","arizona","arkansas","california","colorado","delaware","florida","georgia","hawaii","idaho",
-    "illinois","indiana","indiana","iowa","kansas","kentucky","louisiana","maine","maryland","michigan","minnesota",
-    "missouri","newjersey","newmexico","newyork","northcarolina","ohio","oklahoma","oregon","tennessee","texas","utah",
-    "vermont","virginia","wisconsin","wyoming"];
+    var states= [{state:"alabama",abbr:"AL"},{state:"alaska",abbr:"AK"},{state:"arizona",abbr:"AZ"},{state:"arkansas",abbr:"AR"},{state:"california",abbr:"CA"},
+        {state:"colorado",abbr:"CO"},{state:"Connecticut",abbr:"CT"},{state:"delaware",abbr:"DE"},{state:"florida",abbr:"FL"},{state:"georgia",abbr:"GA"},
+        {state:"hawaii",abbr:"HI"},{state:"idaho",abbr:"ID"},{state:"illinois",abbr:"IL"},{state:"indiana",abbr:"IN"},{state:"iowa",abbr:"IA"},{state:"kansas",abbr:"KS"},
+        {state:"kentucky",abbr:"KY"},{state:"louisiana",abbr:"LA"},{state:"maine",abbr:"ME"},{state:"maryland",abbr:"MD"},{state:"Massachusetts",abbr:"MA"},
+        {state:"michigan",abbr:"MI"},{state:"minnesota",abbr:"MN"},{state:"Mississippi",abbr:"MS"},{state:"missouri",abbr:"MO"},{state:"Montana",abbr:"MT"},
+        {state:"Nebraska",abbr:"NE"},{state:"Nevada",abbr:"NV"},{state:"New Hampshire",abbr:"NH"},{state:"newjersey",abbr:"NJ"},{state:"newmexico",abbr:"NM"},
+        {state:"newyork",abbr:"NY"},{state:"northcarolina",abbr:"NC"},{state:"NorthDakota",abbr:"ND"},{state:"ohio",abbr:"OH"},{state:"oklahoma",abbr:"OK"},
+        {state:"oregon",abbr:"OR"},{state:"Pennsylvania",abbr:"PA"},{state:"RhodeIsland",abbr:"RI"},{state:"SouthCarolina",abbr:"SC"},{state:"SouthDakota",abbr:"SD"},
+        {state:"tennessee",abbr:"TN"},{state:"texas",abbr:"TX"},{state:"utah",abbr:"UT"},{state:"vermont",abbr:"VT"},{state:"virginia",abbr:"VA"},{state:"Washington",abbr:"WA"},
+        {state:"WestVirginia",abbr:"WV"},{state:"wisconsin",abbr:"WI"},{state:"wyoming",abbr:"WY"},{state:"DistrictOfColumbia",abbr:"DC"}];
     
     var config = {
         apiKey: "AIzaSyB3OTKnscA9uQXfdcKUkuPOANkEF-lUVA0",
@@ -39,12 +45,12 @@ $(document).ready(function() {
     var jjdb = db.ref("Project1");
     
     for (var i=0;i<states.length;i++) {
-        $("#dropdown1").append('<li><a href="#!">'+states[i]+'</a></li>');
+        $("#dropdown1").append('<li><a href="#!">'+states[i].state+'</a></li>');
     }
     console.log(categoryImages);
     for (var i=0;i<categoryImages.length;i++) {
         var catDiv = $('<div class="col s6 m4 category" data="'+categoryImages[i].catNum+'">');
-        var cardA = $('<a href="results.html" target="_blank"></a>');
+        var cardA = $('<a href="results.html" target=""></a>');
         var cardDiv = $('<div class="card small"  style="height: 120px;border: 2px solid darkgray;border-radius: 7px"></div>');
         var cardImg = $('<div class="card-image" style="max-height: 100%; overflow: none;"></div>');              
         cardImg.append('<img class="responsive-img" src="images/'+categoryImages[i].url+'">');
@@ -65,7 +71,7 @@ $(document).ready(function() {
       }
 
     var lengthFavList=0;
-    $("#resultsDiv img").attr("src",localStorage.getItem("categoryPic"));
+    $("#resultsDiv img").attr("src","images/"+localStorage.getItem("categoryPic"));
 
     jjdb.on("child_added", function(childSnapshot) {
 
@@ -147,13 +153,15 @@ $(document).ready(function() {
     });
     //    var city = "";
 
-       var state = "";
+       var state = localStorage.getItem("state_abbr");
        
        var categoryId = localStorage.getItem("category");
+
+       var missions =[];
     
        function callCharApi (cat) {
         
-        var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=9&rated=true&state=NC&categoryID="+cat; 
+        var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=9&rated=true&state="+state+"&categoryID="+cat; 
 
     
         $.ajax({
@@ -168,13 +176,14 @@ $(document).ready(function() {
             console.log("Rating: " + data[0].currentRating.rating);
             console.log(data[0].websiteURL);
             console.log(data[0].irsClassification.subsection);
-            $('.opening-hours').append('<li>'+data[0].mission+"</li>");
 
             //Loop Through Data Returned 
 
             for (var i = 0; i <data.length; i++) {
                 //most-outer Div
-                var $npDiv = $('<div id="index-'+i+'" class="col s6 m4 cardcol for-buttons" data-Name="'+data[i].charityName+'"></div>');
+                missions.push({name: data[i].charityName,mission: data[i].mission,addr: data[i].mailingAddress.streetAddress1+" "+ data[i].mailingAddress.city +","+data[i].mailingAddress.stateOrProvince + " "+ data[i].mailingAddress.postalCode});
+
+                var $npDiv = $('<div id="index-"'+i+'" class="col s6 m4 cardcol for-buttons" data-Name="'+data[i].charityName+'"></div>');
 
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
@@ -237,6 +246,18 @@ $(document).ready(function() {
 
         callCharApi(categoryId);
 
+        $("#dropdown1").on("click", "li a", function () {
+
+            // Grab the index info"
+            var stateClicked = $(this).text();
+            for (i=0;i<states.length;i++) {
+                if (states[i].state ===stateClicked) {
+                    localStorage.setItem("state_abbr",states[i].abbr);
+                }
+            }
+            $(".dropdown-trigger").attr("style","text-transform:uppercase;");
+            $(".dropdown-trigger").text(stateClicked);
+        });
 
         // Click handler for adding a gif to favorites
         $("#catRow").on("click", ".category", function () {
@@ -244,7 +265,7 @@ $(document).ready(function() {
             // Grab the index info
             var catClicked = $(this).attr("data");
             for (i=0;i<categoryImages.length;i++) {
-                if (categoryImages.catNum ==catClicked) {
+                if (categoryImages[i].catNum ===catClicked) {
                     localStorage.setItem("categoryPic",categoryImages[i].url);
                 }
             }
@@ -257,6 +278,12 @@ $(document).ready(function() {
         // Populating Map with the Charity Category in context. 
         $(".char-card").on("click", ".cardcol", function () {        
             var newURL = $(this).attr("data-Name");
+            for (i=0;i<missions.length;i++) {
+                if (missions[i].name ===newURL) {
+                    $('#address-display').text(missions[i].addr);
+                    $('.opening-hours').html('<li>'+missions[i].mission+"</li>");       
+                }
+            }
             document.getElementById("charityMap").src ="https://www.google.com/maps/embed/v1/search?key=AIzaSyAJDFeBXZBp-TTYRVj6aK4vplaZQ3VbrrM&zoom=10&q="+ newURL;
         });
         // END OF GOOGLE MAP FEATURE 
@@ -264,19 +291,19 @@ $(document).ready(function() {
         // Click handler for adding a gif to favorites
         $(".char-card").on("click", ".favChar", function () {
         
-        // Grab the index info
-        var nameClicked = $(this).attr("data");
-        console.log(nameClicked);
-        
-            // Remove the gif from search
-        var copyName = $("#index-"+nameClicked).attr("data-Name");
-        console.log(copyName);
-        var copyPic = $("#index-"+nameClicked+ ' .card .card-image img').attr("src");
-        var copyStat = $("#index-"+nameClicked+ ' .card .card-reveal :nth-child(2)').text();
-        var copyUrl = $("#index-"+nameClicked+ ' .card .card-reveal p a').attr("href");
-        makeFavCard(copyName,copyPic,copyStat,copyUrl);
+            // Grab the index info
+            var nameClicked = $(this).attr("data");
+            console.log(nameClicked);
+            
+                // Remove the gif from search
+            var copyName = $("#index-"+nameClicked).attr("data-Name");
+            console.log(copyName);
+            var copyPic = $("#index-"+nameClicked+ ' .card .card-image img').attr("src");
+            var copyStat = $("#index-"+nameClicked+ ' .card .card-reveal :nth-child(2)').text();
+            var copyUrl = $("#index-"+nameClicked+ ' .card .card-reveal p a').attr("href");
+            makeFavCard(copyName,copyPic,copyStat,copyUrl);
 
-        // Copy it to favorites container
+            // Copy it to favorites container
 
         });
     });
