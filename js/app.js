@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     //Categories data  identifier: 
     //Animals = 1 
     //Arts, Culture, Humanities = 2 
@@ -31,15 +32,15 @@ $(document).ready(function() {
         $("#catRow").append(catDiv);
     }
     
-       var city = "raleigh";
+    //    var city = "raleigh";
 
-       var state = "NC";
+    //    var state = "NC";
 
-       var zip = "27613";
+    //    var zip = "27613";
     
        var categoryIdentifier = $(".category").data("category-id");
     
-       var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=9&rated=true&city=" + city + "&state=" + state; 
+       var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=9&rated=true&categoryID=11" 
 
     
         $.ajax({
@@ -60,7 +61,7 @@ $(document).ready(function() {
 
             for (var i = 0; i <data.length; i++) {
                 //most-outer Div
-                var $npDiv = $('<div id="'+data[i].charityName.replace(/\s+/g, '')+'" class="col s6 m4 cardcol for-buttons"></div>');
+                var $npDiv = $('<div id="'+data[i].charityName.replace(/\s+/g, '')+'" class="col s6 m4 cardcol for-buttons address"></div>');
 
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
@@ -119,16 +120,60 @@ $(document).ready(function() {
             }
 
         }
-        // Click handler for adding a gif to favorites
-        $(".char-card").on("click", ".favChar", function () {
 
-            // Grab the index info
-            var nameClicked = $(this).attr("data-Name");
-            console.log(nameClicked);
-            // Remove the gif from search
-            var copyCard = $("#"+nameClicked);
-            console.log(copyCard);
-            // Copy it to favorites container
-            $("#"+nameClicked).remove();
-        });
+        //click event handler to retrieve data-address value
+        $(document.body).on("click", ".address",googleGoogle);
+        
+        function googleGoogle() {
+            var address = $(this).data("address");
+            var queryURL1 = "https://maps.googleapis.com/maps/api/geocode/json?address="+ address + "&key=AIzaSyADEsM8kqCZ5T34NXVlTo7WI4k6X2EzHRI";
+
+            //GeoCoding API 
+            $.ajax({
+            url: queryURL1,
+            method:"GET"
+            }).then(geoCode);
+        
+            function geoCode(response) {
+                var result = response.results;
+                var latitude = result[0].geometry.location.lat;
+                var longitude = result[0].geometry.location.lng;
+                console.log(result);
+                console.log(result[0].place_id);
+                console.log(latitude);
+                console.log(longitude);
+
+                $("map-dynamic").attr("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyADEsM8kqCZ5T34NXVlTo7WI4k6X2EzHRI&origin=place_id:" + result[0].place_id + "&zoom=10");
+
+                // queryURL2 = "https://www.google.com/maps/search/?api=1&query=" + latitude + "%2C" + longitude;
+
+                // $.ajax({
+                //     url: queryURL2,
+                //     method: "GET"
+                // }).then(mapVisual)
+
+                // function mapVisual(dataResult) {
+                //     console.log(dataResult);
+
+                    
+
+                // }
+
+            }
+
+        }
+
+
+            // Click handler for adding a gif to favorites
+            $(".char-card").on("click", ".favChar", function () {
+
+                // Grab the index info
+                var nameClicked = $(this).attr("data-Name");
+                console.log(nameClicked);
+                // Remove the gif from search
+                var copyCard = $("#"+nameClicked);
+                console.log(copyCard);
+                // Copy it to favorites container
+                $("#"+nameClicked).remove();
+            });
     });
