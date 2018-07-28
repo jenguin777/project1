@@ -79,7 +79,7 @@ footer.page-footer {
   flex-direction: row;
   text-align: left;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
 }
 
 /* Reveal card styling */
@@ -92,7 +92,7 @@ footer.page-footer {
   cursor: pointer;
   display: flex;
   margin:0px;
-  margin-right: 16px;
+  margin-right: 24px;
   font-weight: bold;
 }
 
@@ -119,6 +119,7 @@ footer.page-footer {
     color: white;
     background: #4285f4;
     display: inline-block;
+    line-height: 24px;
     width: 100px;
     height: 48px;
   }
@@ -132,6 +133,7 @@ footer.page-footer {
   color: #4285f4;
   width: 100px;
   height: 48px;
+  cursor: pointer;
 }
 
 .card .card-reveal p{
