@@ -56,7 +56,16 @@ footer.page-footer {
   margin: 0;
 }
 
+#logo {
+  width: 60px; /* you can use % */
+  height: auto;
+  margin-top: 2px;
+}
 
+#cat-background {
+  border: 2px solid darkgray;
+  border-radius: 7px;
+}
 
 /* Results page styling */
 .card .card-action{
