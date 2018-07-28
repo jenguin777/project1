@@ -44,6 +44,15 @@ $(document).ready(function() {
     var db = firebase.database();
     var jjdb = db.ref("Project1");
     
+    if (localStorage.getItem("state_abbr")){
+        for (var i=0;i<states.length;i++) {
+            if (states[i].abbr === localStorage.getItem("state_abbr")) {
+                $(".dropdown-trigger").attr("style","text-transform:uppercase;");
+                $(".dropdown-trigger").text(states[i].state);
+            }
+        }
+    }
+
     for (var i=0;i<states.length;i++) {
         $("#dropdown1").append('<li><a href="#!">'+states[i].state+'</a></li>');
     }
@@ -151,9 +160,13 @@ $(document).ready(function() {
         });
 
     });
-    //    var city = "";
 
-       var state = localStorage.getItem("state_abbr");
+       if (localStorage.getItem("state_abbr")) {
+             var state = localStorage.getItem("state_abbr");
+       }
+       else {
+            var state = " ";
+       }
        
        var categoryId = localStorage.getItem("category");
 
