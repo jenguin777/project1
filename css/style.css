@@ -80,6 +80,7 @@ footer.page-footer {
   text-align: left;
   justify-content: space-between;
   align-items: end;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 /* Reveal card styling */
@@ -93,7 +94,8 @@ footer.page-footer {
   display: flex;
   margin:0px;
   margin-right: 24px;
-  font-weight: bold;
+  /* font-weight: bold; */
+  text-shadow: none;
 }
 
 .card-reveal-close-icon{
