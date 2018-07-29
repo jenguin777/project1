@@ -57,7 +57,7 @@ footer.page-footer {
 }
 
 #logo {
-  width: 60px; /* you can use % */
+  width: 60px; 
   height: auto;
   margin-top: 2px;
 }
@@ -162,16 +162,30 @@ nav .brand-logo {
 }
 
 @media only screen and (max-width: 768px){
-  .row .col.s6 {
+  .row .col .s6 {
     width: 50%;
   }
+
+  #logo {
+    margin-left: 340px;
+  } 
+}
+
+@media only screen and (max-width: 635px) {
+  #logo {
+    margin-left: 240px;
+  } 
+
 }
 
 @media only screen and (max-width: 450px){
   .row .col.s6 {
     width: 100%;
   }
+  
+  #logo {
+    margin-left: 120%;
+    height: 48px;
+  }
 }
-
-
 
