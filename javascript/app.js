@@ -56,6 +56,10 @@ $(document).ready(function() {
     for (var i=0;i<states.length;i++) {
         $("#dropdown1").append('<li><a href="#!">'+states[i].state+'</a></li>');
     }
+    for (var i=0;i<states.length;i++) {
+        $("#dropdown2").append('<li><a href="#!">'+states[i].state+'</a></li>');
+    }
+
     console.log(categoryImages);
     for (var i=0;i<categoryImages.length;i++) {
         var catDiv = $('<div class="col s6 m4 category" data="'+categoryImages[i].catNum+'">');
@@ -80,6 +84,12 @@ $(document).ready(function() {
       }
 
     var lengthFavList=0;
+    
+    for (var i=0;i<categoryImages.length;i++) {
+        if (localStorage.getItem("category")===categoryImages[i].catNum) {
+            $("#resultsDiv h2").text(categoryImages[i].category);
+        }
+    }
     $("#resultsDiv img").attr("src","images/"+localStorage.getItem("categoryPic"));
 
     jjdb.on("child_added", function(childSnapshot) {
@@ -165,7 +175,7 @@ $(document).ready(function() {
              var state = localStorage.getItem("state_abbr");
        }
        else {
-            var state = " ";
+            var state = "NC";
        }
        
        var categoryId = localStorage.getItem("category");
@@ -174,8 +184,12 @@ $(document).ready(function() {
     
        function callCharApi (cat) {
         
-        var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=9&rated=true&state="+state+"&categoryID="+cat; 
-
+        if (localStorage.getItem("category")) {
+            var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=9&rated=true&state="+state+"&categoryID="+cat; 
+        }
+        else {
+            var queryURL = "https://api.data.charitynavigator.org/v2/Organizations?&app_id=d555fab3&app_key=21adfc6c878ba1839bb8e6a8e0838951&pageSize=9&rated=true&state="+state; 
+        }
     
         $.ajax({
             url: queryURL,
@@ -194,7 +208,7 @@ $(document).ready(function() {
 
             for (var i = 0; i <data.length; i++) {
                 //most-outer Div
-                missions.push({name: data[i].charityName,mission: data[i].mission,addr: data[i].mailingAddress.streetAddress1+" "+ data[i].mailingAddress.city +","+data[i].mailingAddress.stateOrProvince + " "+ data[i].mailingAddress.postalCode});
+                missions.push({name: data[i].charityName,mission: data[i].mission,addr: data[i].mailingAddress.streetAddress1+" "+ data[i].mailingAddress.city +", "+data[i].mailingAddress.stateOrProvince + " "+ data[i].mailingAddress.postalCode});
 
                 var $npDiv = $('<div id="index-'+i+'" class="col s6 m4 cardcol for-buttons" data-Name="'+data[i].charityName+'"></div>');
 
@@ -260,6 +274,19 @@ $(document).ready(function() {
         callCharApi(categoryId);
 
         $("#dropdown1").on("click", "li a", function () {
+
+            // Grab the index info"
+            var stateClicked = $(this).text();
+            for (i=0;i<states.length;i++) {
+                if (states[i].state === stateClicked) {
+                    localStorage.setItem("state_abbr",states[i].abbr);
+                }
+            }
+            $(".dropdown-trigger").attr("style","text-transform:uppercase;");
+            $(".dropdown-trigger").text(stateClicked);
+        });
+
+        $("#dropdown2").on("click", "li a", function () {
 
             // Grab the index info"
             var stateClicked = $(this).text();
