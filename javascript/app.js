@@ -320,6 +320,7 @@ $(document).ready(function() {
             var newURL = $(this).attr("data-Name");
             for (i=0;i<missions.length;i++) {
                 if (missions[i].name ===newURL) {
+                    $('.card-panel h5').text(newURL);
                     $('#address-display').text(missions[i].addr);
                     $('.opening-hours').html('<li>'+missions[i].mission+"</li>");       
                 }
