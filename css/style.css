@@ -98,7 +98,7 @@ footer.page-footer {
   display: flex;
   margin:0px;
   margin-right: 24px;
-  /* font-weight: bold; */
+  font-weight: bold;
   text-shadow: none;
 }
 
