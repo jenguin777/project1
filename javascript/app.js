@@ -129,13 +129,13 @@ $(document).ready(function() {
         $cardRevealSpan.append(childSnapshot.val().FavCharity);
 
         var $cardRevealIcon = $("<i>");
-        $cardRevealIcon.addClass("material-icons right");
+        $cardRevealIcon.addClass("card-reveal-close-icon material-icons right");
         $cardRevealIcon.css({"margin-left":"0","line-height":"1.25" });
         $cardRevealIcon.text("close");
 
         $cardRevealSpan.append($cardRevealIcon);
 
-        var $cardRevealP = $('<p style="color:black">');
+        var $cardRevealP = $('<p class="card-reveal-deductible-text">');
         $cardRevealP.text(childSnapshot.val().CharStat);
         var $cardRevealP2 = $("<p class='card-reveal-contribute-button'>");
         var $cardRevealLink1 = $('<a href="'+childSnapshot.val().CharUrl+'" target="_blank">');
@@ -143,7 +143,7 @@ $(document).ready(function() {
         $cardRevealP2.append($cardRevealLink1);
         var $cardRevealP3 = $("<p>");
         var $cardRevealBtn = $('<button class="checkbox card-reveal-favorite-button" data="'+ lengthFavList+'"></button>"');
-        $cardRevealBtn.text("Remove");
+        $cardRevealBtn.text("Delete");
         $cardRevealP3.append($cardRevealBtn);
 
         $cardReveal.append($cardRevealSpan).append($cardRevealP).append($cardRevealP2).append($cardRevealP3);

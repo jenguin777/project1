@@ -116,6 +116,7 @@ footer.page-footer {
   text-align: left;
   font-size:10px;
   width: 100%;
+  color: black;
 }
 /* Reveal card buttons styling */
 .card-reveal-contribute-button, .card-reveal-favorite-button{
