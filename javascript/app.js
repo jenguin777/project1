@@ -107,7 +107,7 @@ $(document).ready(function() {
         //Card Div
         var $mycard = $('<div class="card" style="height:275px; border-radius: 7px;"></div>');
 
-        var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title" style="font-size:30px">'+childSnapshot.val().FavCharity+'</span></div>');
+        var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title" style="font-size:24px">'+childSnapshot.val().FavCharity+'</span></div>');
 
         var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
         
@@ -242,7 +242,7 @@ $(document).ready(function() {
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
 
-                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title" style="font-size:30px">'+data[i].charityName+'</span></div>');
+                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title" style="font-size:22px">'+data[i].charityName+'</span></div>');
                 
                 //var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
                 var $cardContentAction = $('<div class="card-action" style="height:40%;">');
