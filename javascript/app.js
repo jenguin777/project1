@@ -28,7 +28,7 @@ $(document).ready(function() {
         {state:"tennessee",abbr:"TN"},{state:"texas",abbr:"TX"},{state:"utah",abbr:"UT"},{state:"vermont",abbr:"VT"},{state:"virginia",abbr:"VA"},{state:"Washington",abbr:"WA"},
         {state:"WestVirginia",abbr:"WV"},{state:"wisconsin",abbr:"WI"},{state:"wyoming",abbr:"WY"},{state:"DistrictOfColumbia",abbr:"DC"}];
     
-    var catPicsArray = [];
+    // var catPicsArray = [];
 
     var config = {
         apiKey: "AIzaSyB3OTKnscA9uQXfdcKUkuPOANkEF-lUVA0",
@@ -88,11 +88,11 @@ $(document).ready(function() {
       }
 
     var lengthFavList=0;
-    var catSearchedUnspl;
+    // var catSearchedUnspl;
 
     for (var i=0;i<categoryImages.length;i++) {
         if (localStorage.getItem("category")===categoryImages[i].catNum) {
-            catSearchedUnspl = categoryImages[i].photoCat;
+            // catSearchedUnspl = categoryImages[i].photoCat;
             $("#resultsDiv h2").text(categoryImages[i].category);
         }
     }
@@ -192,22 +192,22 @@ $(document).ready(function() {
 
        var missions =[];
        
-       function callUnsplashApi(cat) {
-        $.ajax({
-            url: "https://api.unsplash.com/photos/random?client_id=57ec7e31d50ff96bfc45480b25a75ebc00b710583c46b4763aad264d54172a6b&w=600&h=400&count=9&query="+cat,
-            method: "GET"
-        }).then(getResults);
+    //    function callUnsplashApi(cat) {
+    //     $.ajax({
+    //         url: "https://api.unsplash.com/photos/random?client_id=57ec7e31d50ff96bfc45480b25a75ebc00b710583c46b4763aad264d54172a6b&w=600&h=400&count=9&query="+cat,
+    //         method: "GET"
+    //     }).then(getResults);
     
-        function getResults(results) {
-            for (var i=0;i<results.length;i++) {
-            catPicsArray.push(results[i].urls.regular);
-            }
-        }
-        }
+    //     function getResults(results) {
+    //         for (var i=0;i<results.length;i++) {
+    //         catPicsArray.push(results[i].urls.regular);
+    //         }
+    //     }
+    //     }
 
-        console.log(catSearchedUnspl);
-        callUnsplashApi(catSearchedUnspl);
-        console.log(catPicsArray);
+        // console.log(catSearchedUnspl);
+        // callUnsplashApi(catSearchedUnspl);
+        // console.log(catPicsArray);
 
        function callCharApi (cat) {
         
