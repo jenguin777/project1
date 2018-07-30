@@ -109,17 +109,18 @@ $(document).ready(function() {
 
         var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title" style="font-size:24px">'+childSnapshot.val().FavCharity+'</span></div>');
 
-        var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
+        var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 16px;">');
         
         var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem;" ></p>');
         $cardContentSpan.text(childSnapshot.val().CharityTag);
 
         var $icon = $("<i>");
-        $icon.addClass("material-icons right");
+        $icon.addClass("activator material-icons right");
         $icon.text("more_vert");
 
-        $cardContentSpan.append($icon);
+        // $cardContentSpan.append($icon);
         $cardContentAction.append($cardContentSpan);
+        $cardContentAction.append($icon);
 
         var $cardRatingImg=$('<img src="'+childSnapshot.val().CharRating+'" class="img-rating">');
 
@@ -245,19 +246,20 @@ $(document).ready(function() {
                 var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title" style="font-size:22px">'+data[i].charityName+'</span></div>');
                 
                 //var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
-                var $cardContentAction = $('<div class="card-action" style="height:40%;">');
+                var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 16px;">');
                 
                 var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem; margin:16px;" ></p>');
                 $cardContentSpan.append('<span style="font-size: 18px;line-height: 1.2rem;">'+data[i].tagLine+'</span>');
 
                 var $icon = $("<i>");
-                $icon.addClass("material-icons right");
+                $icon.addClass("activator material-icons right");
                 $icon.text("more_vert");
 
                 var $cardRatingImg=$('<img src="'+data[i].currentRating.ratingImage.large+'" class="img-rating">');
 
-                $cardContentSpan.append($icon);
+                //$cardContentSpan.append($icon);
                 $cardContentAction.append($cardContentSpan);
+                $cardContentAction.append($icon);
 
                 //Card Reveal Creation
                 var $cardReveal = $("<div>");
