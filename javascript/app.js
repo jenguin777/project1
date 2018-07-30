@@ -11,11 +11,11 @@ $(document).ready(function() {
     //Religion = 9
     //Research and Public Policy = 11
  
-    var categoryImages = [{category:"Animals",url:"Animals1.jpg",catNum:"1"},{category:"ArtsCultureHumanities",url:"ArtsCultureHumanities2.jpg",catNum:"2"},
-                        {category:"Education",url:"Education3.jpg",catNum:"3"},{category:"Environment",url:"Environment4.jpg",catNum:"4"},
-                        {category:"Health",url:"Health5.jpg",catNum:"5"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6"},
-                        {category:"HumanCivilRights",url:"HumanCivilRights8.jpg",catNum:"8"},{category:"Religion",url:"Religion9.jpg",catNum:"9"},
-                        {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg",catNum:"11"}];
+    var categoryImages = [{category:"Animals",url:"Animals1.jpg",catNum:"1",photoCat:"Animals"},{category:"ArtsCultureHumanities",url:"ArtsCultureHumanities2.jpg",catNum:"2",photoCat:"Arts"},
+                        {category:"Education",url:"Education3.jpg",catNum:"3",photoCat:"Education"},{category:"Environment",url:"Environment4.jpg",catNum:"4",photoCat:"Environment"},
+                        {category:"Health",url:"Health5.jpg",catNum:"5",photoCat:"Health"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6",photoCat:"Human"},
+                        {category:"HumanCivilRights",url:"HumanCivilRights8.jpg",catNum:"8",photoCat:"CivilRights"},{category:"Religion",url:"Religion9.jpg",catNum:"9",photoCat:"Religion"},
+                        {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg",catNum:"11",photoCat:"Government"}];
     
     var states= [{state:"alabama",abbr:"AL"},{state:"alaska",abbr:"AK"},{state:"arizona",abbr:"AZ"},{state:"arkansas",abbr:"AR"},{state:"california",abbr:"CA"},
         {state:"colorado",abbr:"CO"},{state:"Connecticut",abbr:"CT"},{state:"delaware",abbr:"DE"},{state:"florida",abbr:"FL"},{state:"georgia",abbr:"GA"},
@@ -28,6 +28,8 @@ $(document).ready(function() {
         {state:"tennessee",abbr:"TN"},{state:"texas",abbr:"TX"},{state:"utah",abbr:"UT"},{state:"vermont",abbr:"VT"},{state:"virginia",abbr:"VA"},{state:"Washington",abbr:"WA"},
         {state:"WestVirginia",abbr:"WV"},{state:"wisconsin",abbr:"WI"},{state:"wyoming",abbr:"WY"},{state:"DistrictOfColumbia",abbr:"DC"}];
     
+    var catPicsArray = [];
+
     var config = {
         apiKey: "AIzaSyB3OTKnscA9uQXfdcKUkuPOANkEF-lUVA0",
         authDomain: "projectcodingcamp.firebaseapp.com",
@@ -84,13 +86,16 @@ $(document).ready(function() {
       }
 
     var lengthFavList=0;
-    
+    var catSearchedUnspl;
+
     for (var i=0;i<categoryImages.length;i++) {
         if (localStorage.getItem("category")===categoryImages[i].catNum) {
+            catSearchedUnspl = categoryImages[i].photoCat;
             $("#resultsDiv h2").text(categoryImages[i].category);
         }
     }
     $("#resultsDiv img").attr("src","images/"+localStorage.getItem("categoryPic"));
+
 
     jjdb.on("child_added", function(childSnapshot) {
 
@@ -181,7 +186,24 @@ $(document).ready(function() {
        var categoryId = localStorage.getItem("category");
 
        var missions =[];
+       
+       function callUnsplashApi(cat) {
+        $.ajax({
+            url: "https://api.unsplash.com/photos/random?client_id=57ec7e31d50ff96bfc45480b25a75ebc00b710583c46b4763aad264d54172a6b&w=600&h=400&count=9&query="+cat,
+            method: "GET"
+        }).then(getResults);
     
+        function getResults(results) {
+            for (var i=0;i<results.length;i++) {
+            catPicsArray.push(results[i].urls.regular);
+            }
+        }
+        }
+
+        console.log(catSearchedUnspl);
+        callUnsplashApi(catSearchedUnspl);
+        console.log(catPicsArray);
+
        function callCharApi (cat) {
         
         if (localStorage.getItem("category")) {
@@ -215,7 +237,7 @@ $(document).ready(function() {
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
 
-                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/'+categoryImages[i].url +'" style="height:130px;";></div>');
+                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="'+catPicsArray[i] +'" style="height:130px;";></div>');
                 
                 //var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
                 var $cardContentAction = $('<div class="card-action" style="height:40%;">');
