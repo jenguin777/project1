@@ -23,12 +23,9 @@ p {
 
 .parallax-container {
   min-height: 380px;
-  /* line-height: 0; */
   height: auto;
   color: rgba(255,255,255,.9);
-  /* -webkit-box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.75);
-  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.75); */
+  
 }
   .parallax-container .section {
     width: 100%;
@@ -36,7 +33,6 @@ p {
 
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
-    /* position: absolute; */
     top: 40%;
   }
   #index-banner .section {
@@ -180,11 +176,6 @@ h2{
   margin-top: 0px;
 }
 
-/* nav .brand-logo {
-  /* margin-left: 16px; */
-
-
-
 .dropdown-content li > a, .dropdown-content li > span {
   text-transform: uppercase;
 }
@@ -208,15 +199,10 @@ nav .sidenav-trigger{
   .row .col .s6 {
     width: 50%;
   }
-
-  #logo {
-    /* margin-left: 340px; */
-  } 
 }
 
 @media only screen and (max-width: 635px) {
   #logo {
-    /* margin-left: 240px; */
     width: 42px;
   } 
 
@@ -228,7 +214,6 @@ nav .sidenav-trigger{
   }
   
   #logo {
-    /* margin-left: 120%; */
     width: 42px;
   }
 }

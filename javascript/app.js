@@ -137,13 +137,13 @@ $(document).ready(function() {
 
         var $cardRevealP = $('<p style="color:black">');
         $cardRevealP.text(childSnapshot.val().CharStat);
-        var $cardRevealP2 = $("<p>");
+        var $cardRevealP2 = $("<p class='card-reveal-contribute-button'>");
         var $cardRevealLink1 = $('<a href="'+childSnapshot.val().CharUrl+'" target="_blank">');
         $cardRevealLink1.text("Contribute");
         $cardRevealP2.append($cardRevealLink1);
         var $cardRevealP3 = $("<p>");
-        var $cardRevealBtn = $('<button class="checkbox" data="'+ lengthFavList+'"></button>"');
-        $cardRevealBtn.text("X");
+        var $cardRevealBtn = $('<button class="checkbox card-reveal-favorite-button" data="'+ lengthFavList+'"></button>"');
+        $cardRevealBtn.text("Remove");
         $cardRevealP3.append($cardRevealBtn);
 
         $cardReveal.append($cardRevealSpan).append($cardRevealP).append($cardRevealP2).append($cardRevealP3);
