@@ -16,7 +16,7 @@ p {
 }
 
 .sidenav-trigger {
-  color: #26a69a;
+  color: white;
 }
 
 .parallax-container {
@@ -73,8 +73,8 @@ footer.page-footer {
 }
 /* Styling for title and icon layout */
 .card-title{
-  font-size: 20px;
-  line-height: 1.4rem;
+  font-size: 28px;
+  line-height: 1.65rem;
   display: flex;
   flex-direction: row;
   text-align: left;
@@ -111,7 +111,7 @@ footer.page-footer {
 .card-reveal-deductible-text{
   float: left;
   text-align: left;
-  font-size:10px;
+  font-size:14px;
   width: 100%;
   color: black;
 }
