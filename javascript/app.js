@@ -13,7 +13,7 @@ $(document).ready(function() {
  
     var categoryImages = [{category:"Animals",url:"Animals1.jpg",catNum:"1",photoCat:"Animals"},{category:"ArtsCultureHumanities",url:"ArtsCultureHumanities2.jpg",catNum:"2",photoCat:"Arts"},
                         {category:"Education",url:"Education3.jpg",catNum:"3",photoCat:"Education"},{category:"Environment",url:"Environment4.jpg",catNum:"4",photoCat:"Environment"},
-                        {category:"Health",url:"Health5.jpg",catNum:"5",photoCat:"Health"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6",photoCat:"Human"},
+                        {category:"Health",url:"Health5.jpg",catNum:"5",photoCat:"Health"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6",photoCat:"Humanity"},
                         {category:"HumanCivilRights",url:"HumanCivilRights8.jpg",catNum:"8",photoCat:"CivilRights"},{category:"Religion",url:"Religion9.jpg",catNum:"9",photoCat:"Religion"},
                         {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg",catNum:"11",photoCat:"Government"}];
     
@@ -76,10 +76,12 @@ $(document).ready(function() {
         $("#catRow").append(catDiv);
     }
 
-    function makeFavCard (favName,favPic,favStat,favUrl) {
+    function makeFavCard (favName,favTag,favPic,favRat,favStat,favUrl) {
         jjdb.push ({
             FavCharity : favName,
+            CharityTag : favTag,
             CharityPic : favPic,
+            CharRating : favRat,
             CharStat : favStat,
             CharUrl : favUrl
         });
@@ -105,12 +107,12 @@ $(document).ready(function() {
         //Card Div
         var $mycard = $('<div class="card" style="height:275px; border-radius: 7px;"></div>');
 
-        var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="'+childSnapshot.val().CharityPic +'" style="height:130px";></div>');
+        var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title" style="font-size:30px">'+childSnapshot.val().FavCharity+'</span></div>');
 
         var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
         
-        var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem;" ></span>');
-        $cardContentSpan.text(childSnapshot.val().FavCharity);
+        var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem;" ></p>');
+        $cardContentSpan.text(childSnapshot.val().CharityTag);
 
         var $icon = $("<i>");
         $icon.addClass("material-icons right");
@@ -119,13 +121,15 @@ $(document).ready(function() {
         $cardContentSpan.append($icon);
         $cardContentAction.append($cardContentSpan);
 
+        var $cardRatingImg=$('<img src="'+childSnapshot.val().CharRating+'" class="img-rating">');
+
         //Card Reveal Creation
         var $cardReveal = $("<div>");
         $cardReveal.addClass("card-reveal");
 
         var $cardRevealSpan = $("<p>");
         $cardRevealSpan.addClass("card-title grey-text text-darken-4");
-        $cardRevealSpan.css({"font-size":"16px","line-height":"1.4rem"});
+        $cardRevealSpan.css({"font-size":"22px","line-height":"1.4rem"});
         $cardRevealSpan.append(childSnapshot.val().FavCharity);
 
         var $cardRevealIcon = $("<i>");
@@ -151,6 +155,7 @@ $(document).ready(function() {
         // Appending CardImg, CardContent, and Card Reveal to its div
         $mycard.append($cardContent);
         $mycard.append($cardContentAction);
+        $mycard.append($cardRatingImg);
         $mycard.append($cardReveal);
         $npDiv.append($mycard);
         
@@ -237,17 +242,19 @@ $(document).ready(function() {
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
 
-                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="'+catPicsArray[i] +'" style="height:130px;";></div>');
+                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title" style="font-size:30px">'+data[i].charityName+'</span></div>');
                 
                 //var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
                 var $cardContentAction = $('<div class="card-action" style="height:40%;">');
                 
-                var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem; margin:16px;" ></span>');
-                $cardContentSpan.text(data[i].charityName);
+                var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem; margin:16px;" ></p>');
+                $cardContentSpan.append('<span style="font-size: 18px;line-height: 1.2rem;">'+data[i].tagLine+'</span>');
 
                 var $icon = $("<i>");
                 $icon.addClass("material-icons right");
                 $icon.text("more_vert");
+
+                var $cardRatingImg=$('<img src="'+data[i].currentRating.ratingImage.large+'" class="img-rating">');
 
                 $cardContentSpan.append($icon);
                 $cardContentAction.append($cardContentSpan);
@@ -258,7 +265,7 @@ $(document).ready(function() {
 
                 var $cardRevealSpan = $("<p>");
                 $cardRevealSpan.addClass("card-title grey-text text-darken-4");
-                $cardRevealSpan.css({"font-size":"16px","line-height":"1.4rem" });
+                $cardRevealSpan.css({"font-size":"22px","line-height":"1.4rem" });
                 $cardRevealSpan.append(data[i].charityName);
 
                 var $cardRevealIcon = $("<i>");
@@ -284,6 +291,7 @@ $(document).ready(function() {
                 // Appending CardImg, CardContent, and Card Reveal to its div
                 $mycard.append($cardContent);
                 $mycard.append($cardContentAction);
+                $mycard.append($cardRatingImg);
                 $mycard.append($cardReveal);
                 $npDiv.append($mycard);
 
@@ -360,11 +368,13 @@ $(document).ready(function() {
             
                 // Remove the gif from search
             var copyName = $("#index-"+nameClicked).attr("data-Name");
+            var copyTag = $("#index-"+nameClicked+ ' .card .card-action .card-title span').text();
             console.log(copyName);
             var copyPic = $("#index-"+nameClicked+ ' .card .card-image img').attr("src");
+            var copyRating = $("#index-"+nameClicked+ ' .card .img-rating').attr("src");
             var copyStat = $("#index-"+nameClicked+ ' .card .card-reveal :nth-child(2)').text();
             var copyUrl = $("#index-"+nameClicked+ ' .card .card-reveal p a').attr("href");
-            makeFavCard(copyName,copyPic,copyStat,copyUrl);
+            makeFavCard(copyName,copyTag,copyPic,copyRating,copyStat,copyUrl);
 
             // Copy it to favorites container
 
