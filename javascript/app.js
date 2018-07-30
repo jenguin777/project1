@@ -66,7 +66,7 @@ $(document).ready(function() {
     for (var i=0;i<categoryImages.length;i++) {
         var catDiv = $('<div class="col s6 m4 category" data="'+categoryImages[i].catNum+'">');
         var cardA = $('<a href="results.html" target=""></a>');
-        var cardDiv = $('<div class="card small"  style="height: 120px;border: 2px solid darkgray;border-radius: 7px"></div>');
+        var cardDiv = $('<div class="card small"  style="height: 120px; border-radius: 5px"></div>');
         var cardImg = $('<div class="card-image" style="max-height: 100%; overflow: none;"></div>');              
         cardImg.append('<img class="responsive-img" src="images/'+categoryImages[i].url+'">');
         cardImg.append('<span class="card-title">'+categoryImages[i].category+'</span>');
@@ -103,7 +103,7 @@ $(document).ready(function() {
         var $npDiv = $('<div id="indexFav-'+lengthFavList+'" class="col s6 m4 cardcol for-buttons" data-Name="'+childSnapshot.val().FavCharity+'"></div>');
 
         //Card Div
-        var $mycard = $('<div class="card" style="height:275px; border: 2px solid darkgray;border-radius: 7px;"></div>');
+        var $mycard = $('<div class="card" style="height:275px; border-radius: 7px;"></div>');
 
         var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="'+childSnapshot.val().CharityPic +'" style="height:130px";></div>');
 
