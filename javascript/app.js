@@ -11,11 +11,11 @@ $(document).ready(function() {
     //Religion = 9
     //Research and Public Policy = 11
  
-    var categoryImages = [{category:"Animals",url:"Animals1.jpg",catNum:"1",photoCat:"Animals"},{category:"ArtsCultureHumanities",url:"ArtsCultureHumanities2.jpg",catNum:"2",photoCat:"Arts"},
+    var categoryImages = [{category:"Animals",url:"Animals1.jpg",catNum:"1",photoCat:"Animals"},{category:"Arts Culture Humanities",url:"ArtsCultureHumanities2.jpg",catNum:"2",photoCat:"Arts"},
                         {category:"Education",url:"Education3.jpg",catNum:"3",photoCat:"Education"},{category:"Environment",url:"Environment4.jpg",catNum:"4",photoCat:"Environment"},
-                        {category:"Health",url:"Health5.jpg",catNum:"5",photoCat:"Health"},{category:"HumanServices",url:"HumanServices6.jpg",catNum:"6",photoCat:"Humanity"},
-                        {category:"HumanCivilRights",url:"HumanCivilRights8.jpg",catNum:"8",photoCat:"CivilRights"},{category:"Religion",url:"Religion9.jpg",catNum:"9",photoCat:"Religion"},
-                        {category:"ResearchPublicPolicy",url:"ResearchPublicPolicy11.jpg",catNum:"11",photoCat:"Government"}];
+                        {category:"Health",url:"Health5.jpg",catNum:"5",photoCat:"Health"},{category:"Human Services",url:"HumanServices6.jpg",catNum:"6",photoCat:"Humanity"},
+                        {category:"Human Civil Rights",url:"HumanCivilRights8.jpg",catNum:"8",photoCat:"Civil Rights"},{category:"Religion",url:"Religion9.jpg",catNum:"9",photoCat:"Religion"},
+                        {category:"Research Public Policy",url:"ResearchPublicPolicy11.jpg",catNum:"11",photoCat:"Government"}];
     
     var states= [{state:"alabama",abbr:"AL"},{state:"alaska",abbr:"AK"},{state:"arizona",abbr:"AZ"},{state:"arkansas",abbr:"AR"},{state:"california",abbr:"CA"},
         {state:"colorado",abbr:"CO"},{state:"Connecticut",abbr:"CT"},{state:"delaware",abbr:"DE"},{state:"florida",abbr:"FL"},{state:"georgia",abbr:"GA"},
@@ -107,11 +107,11 @@ $(document).ready(function() {
         //Card Div
         var $mycard = $('<div class="card" style="height:275px; border-radius: 7px;"></div>');
 
-        var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title">'+childSnapshot.val().FavCharity+'</span></div>');
+        var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title charity-title" style="padding:15px;">'+childSnapshot.val().FavCharity+'</span></div>');
 
-        var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
+        var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;overflow:auto;">');
         
-        var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem;" ></p>');
+        var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem;"></p>');
         $cardContentSpan.text(childSnapshot.val().CharityTag);
 
         var $icon = $("<i>");
@@ -242,10 +242,10 @@ $(document).ready(function() {
                 //Card Div
                 var $mycard = $('<div class="card" style="height:275px"></div>');
 
-                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title" style="font-size:30px">'+data[i].charityName+'</span></div>');
+                var $cardContent = $('<div class="card-image waves-effect waves-block waves-light"><img class="activator" src="images/mochaGrunge.png" style="height:130px;"><span class="card-title charity-title" style="padding:15px;">'+data[i].charityName+'</span></div>');
                 
                 //var $cardContentAction = $('<div class="card-action" style="height:40%;padding: 5px 18px;">');
-                var $cardContentAction = $('<div class="card-action" style="height:40%;">');
+                var $cardContentAction = $('<div class="card-action" style="height:40%;overflow:auto;">');
                 
                 var $cardContentSpan=$('<p class="card-title activator grey-text text-darken-4" style="font-size:20px;line-height:1.4rem; margin:16px;" ></p>');
                 $cardContentSpan.append('<span style="font-size: 18px;line-height: 1.2rem;">'+data[i].tagLine+'</span>');
@@ -265,7 +265,7 @@ $(document).ready(function() {
 
                 var $cardRevealSpan = $("<p>");
                 $cardRevealSpan.addClass("card-title grey-text text-darken-4");
-                $cardRevealSpan.css({"font-size":"22px","line-height":"1.4rem" });
+                $cardRevealSpan.css({"font-size":"22px","line-height":"1.4rem"});
                 $cardRevealSpan.append(data[i].charityName);
 
                 var $cardRevealIcon = $("<i>");
