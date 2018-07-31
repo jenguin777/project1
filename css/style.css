@@ -57,6 +57,10 @@ p {
   margin-top:20px;
   cursor: pointer;
 }
+.sidenav-trigger > .material-icons {
+  color: white;
+  margin-top: 0px;
+}
 
 footer.page-footer {
   margin: 0;
