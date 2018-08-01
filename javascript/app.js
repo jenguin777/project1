@@ -64,6 +64,41 @@ $(document).ready(function() {
 
     console.log(categoryImages);
 
+    function callUnsplashApi(cat,num) {
+        $.ajax({
+            url: "https://api.unsplash.com/photos/random?client_id=57ec7e31d50ff96bfc45480b25a75ebc00b710583c46b4763aad264d54172a6b&w=600&h=400&count=1&query="+cat,
+            method: "GET"
+        }).then(getResults);
+    
+        function getResults(results) {
+            console.log(results);
+            localStorage.setItem('catPic'+num,results[0].urls.regular);
+        }
+    }
+
+    if (!(localStorage.getItem("catPic1"))) {
+        for (var i=0;i<categoryImages.length;i++) {
+            console.log(categoryImages[i].photoCat);
+            callUnsplashApi(categoryImages[i].photoCat,categoryImages[i].catNum);
+        }
+    }
+
+    setTimeout (function(){
+    for (var i=0;i<categoryImages.length;i++) {
+        var newPic = localStorage.getItem('catPic'+categoryImages[i].catNum);
+        var catDiv = $('<div class="col s6 m4 category" data="'+categoryImages[i].catNum+'">');
+        var cardA = $('<a href="results.html" target=""></a>');
+        var cardDiv = $('<div class="card small"  style="height: 140px; border-radius: 5px; width: 95%;margin-left:auto;margin-right:auto;"></div>');
+        var cardImg = $('<div class="card-image" style="max-height: 100%; overflow: none;"></div>');              
+        cardImg.append('<img class="responsive-img" src="'+newPic+'">');
+        cardImg.append('<span class="card-title">'+categoryImages[i].category+'</span>');
+        cardDiv.append(cardImg);
+        cardA.append(cardDiv);
+        catDiv.append(cardA);
+        $("#catRow").append(catDiv);
+    }
+    },800);
+
     function makeFavCard (favName,favTag,favPic,favRat,favStat,favUrl) {
         jjdb.push ({
             FavCharity : favName,
@@ -178,41 +213,6 @@ $(document).ready(function() {
        var categoryId = localStorage.getItem("category");
 
        var missions =[];
-       
-       function callUnsplashApi(cat,num) {
-        $.ajax({
-            url: "https://api.unsplash.com/photos/random?client_id=57ec7e31d50ff96bfc45480b25a75ebc00b710583c46b4763aad264d54172a6b&w=600&h=400&count=1&query="+cat,
-            method: "GET"
-        }).then(getResults);
-    
-        function getResults(results) {
-            console.log(results);
-            localStorage.setItem('catPic'+num,results[0].urls.regular);
-        }
-        }
-
-        if (!(localStorage.getItem("catPic1"))) {
-            for (var i=0;i<categoryImages.length;i++) {
-                console.log(categoryImages[i].photoCat);
-                callUnsplashApi(categoryImages[i].photoCat,categoryImages[i].catNum);
-            }
-        }
-
-        setTimeout (function(){
-        for (var i=0;i<categoryImages.length;i++) {
-            var newPic = localStorage.getItem('catPic'+categoryImages[i].catNum);
-            var catDiv = $('<div class="col s6 m4 category" data="'+categoryImages[i].catNum+'">');
-            var cardA = $('<a href="results.html" target=""></a>');
-            var cardDiv = $('<div class="card small"  style="height: 140px; border-radius: 5px; width: 95%;margin-left:auto;margin-right:auto;"></div>');
-            var cardImg = $('<div class="card-image" style="max-height: 100%; overflow: none;"></div>');              
-            cardImg.append('<img class="responsive-img" src="'+newPic+'">');
-            cardImg.append('<span class="card-title">'+categoryImages[i].category+'</span>');
-            cardDiv.append(cardImg);
-            cardA.append(cardDiv);
-            catDiv.append(cardA);
-            $("#catRow").append(catDiv);
-        }
-        },800);
 
        function callCharApi (cat) {
         
