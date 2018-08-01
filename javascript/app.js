@@ -28,7 +28,7 @@ $(document).ready(function() {
         {state:"tennessee",abbr:"TN"},{state:"texas",abbr:"TX"},{state:"utah",abbr:"UT"},{state:"vermont",abbr:"VT"},{state:"virginia",abbr:"VA"},{state:"Washington",abbr:"WA"},
         {state:"WestVirginia",abbr:"WV"},{state:"wisconsin",abbr:"WI"},{state:"wyoming",abbr:"WY"},{state:"DistrictOfColumbia",abbr:"DC"}];
     
-    // var catPicsArray = [];
+    var catPicsArray = [];
 
     var config = {
         apiKey: "AIzaSyB3OTKnscA9uQXfdcKUkuPOANkEF-lUVA0",
@@ -63,18 +63,6 @@ $(document).ready(function() {
     }
 
     console.log(categoryImages);
-    for (var i=0;i<categoryImages.length;i++) {
-        var catDiv = $('<div class="col s6 m4 category" data="'+categoryImages[i].catNum+'">');
-        var cardA = $('<a href="results.html" target=""></a>');
-        var cardDiv = $('<div class="card small"  style="height: 140px; border-radius: 5px; width: 95%;margin-left:auto;margin-right:auto;"></div>');
-        var cardImg = $('<div class="card-image" style="max-height: 100%; overflow: none;"></div>');              
-        cardImg.append('<img class="responsive-img" src="images/'+categoryImages[i].url+'">');
-        cardImg.append('<span class="card-title">'+categoryImages[i].category+'</span>');
-        cardDiv.append(cardImg);
-        cardA.append(cardDiv);
-        catDiv.append(cardA);
-        $("#catRow").append(catDiv);
-    }
 
     function makeFavCard (favName,favTag,favPic,favRat,favStat,favUrl) {
         jjdb.push ({
@@ -88,15 +76,13 @@ $(document).ready(function() {
       }
 
     var lengthFavList=0;
-    // var catSearchedUnspl;
 
     for (var i=0;i<categoryImages.length;i++) {
         if (localStorage.getItem("category")===categoryImages[i].catNum) {
-            // catSearchedUnspl = categoryImages[i].photoCat;
             $("#resultsDiv h2").text(categoryImages[i].category);
         }
     }
-    $("#resultsDiv img").attr("src","images/"+localStorage.getItem("categoryPic"));
+    $("#resultsDiv img").attr("src",localStorage.getItem("catPic"+localStorage.getItem("category")));
 
 
     jjdb.on("child_added", function(childSnapshot) {
@@ -193,22 +179,40 @@ $(document).ready(function() {
 
        var missions =[];
        
-    //    function callUnsplashApi(cat) {
-    //     $.ajax({
-    //         url: "https://api.unsplash.com/photos/random?client_id=57ec7e31d50ff96bfc45480b25a75ebc00b710583c46b4763aad264d54172a6b&w=600&h=400&count=9&query="+cat,
-    //         method: "GET"
-    //     }).then(getResults);
+       function callUnsplashApi(cat,num) {
+        $.ajax({
+            url: "https://api.unsplash.com/photos/random?client_id=57ec7e31d50ff96bfc45480b25a75ebc00b710583c46b4763aad264d54172a6b&w=600&h=400&count=1&query="+cat,
+            method: "GET"
+        }).then(getResults);
     
-    //     function getResults(results) {
-    //         for (var i=0;i<results.length;i++) {
-    //         catPicsArray.push(results[i].urls.regular);
-    //         }
-    //     }
-    //     }
+        function getResults(results) {
+            console.log(results);
+            localStorage.setItem('catPic'+num,results[0].urls.regular);
+        }
+        }
 
-        // console.log(catSearchedUnspl);
-        // callUnsplashApi(catSearchedUnspl);
-        // console.log(catPicsArray);
+        if (!(localStorage.getItem("catPic1"))) {
+            for (var i=0;i<categoryImages.length;i++) {
+                console.log(categoryImages[i].photoCat);
+                callUnsplashApi(categoryImages[i].photoCat,categoryImages[i].catNum);
+            }
+        }
+
+        setTimeout (function(){
+        for (var i=0;i<categoryImages.length;i++) {
+            var newPic = localStorage.getItem('catPic'+categoryImages[i].catNum);
+            var catDiv = $('<div class="col s6 m4 category" data="'+categoryImages[i].catNum+'">');
+            var cardA = $('<a href="results.html" target=""></a>');
+            var cardDiv = $('<div class="card small"  style="height: 140px; border-radius: 5px; width: 95%;margin-left:auto;margin-right:auto;"></div>');
+            var cardImg = $('<div class="card-image" style="max-height: 100%; overflow: none;"></div>');              
+            cardImg.append('<img class="responsive-img" src="'+newPic+'">');
+            cardImg.append('<span class="card-title">'+categoryImages[i].category+'</span>');
+            cardDiv.append(cardImg);
+            cardA.append(cardDiv);
+            catDiv.append(cardA);
+            $("#catRow").append(catDiv);
+        }
+        },800);
 
        function callCharApi (cat) {
         
@@ -336,11 +340,6 @@ $(document).ready(function() {
 
             // Grab the index info
             var catClicked = $(this).attr("data");
-            for (i=0;i<categoryImages.length;i++) {
-                if (categoryImages[i].catNum ===catClicked) {
-                    localStorage.setItem("categoryPic",categoryImages[i].url);
-                }
-            }
             console.log(catClicked);
             newCategoryId = catClicked;
             localStorage.setItem("category",newCategoryId);
