@@ -4,6 +4,8 @@ Tithe is a modern web application for contributing to your favorite charity. It 
 # Technologies used
 Tithe is sourced by the Charity Navigator, Unsplashed, and Google Maps Embed APIs. It uses Materialize for CSS styling, Firebase for data persistence (storage of spotlight charity info), and local storage for data persistence (category and state selected). It is written in the Javascript language using the JQuery library. AJAX is used to fetch data and images from the Charity Navigator and Unsplashed APIs, respectively.
 
+View the application [here.](https://jenguin777.github.io/project1/) 
+
 # License
 MIT license applies.
 
